@@ -15,12 +15,17 @@ class Car extends Model
 
     protected $fillable = ['name', 'founded', 'description'];
 
-    protected $hidden = ['updated_at'];
+    // protected $hidden = ['updated_at'];
 
-    protected $visible = ['name', 'founded', 'description'];
+    // protected $visible = ['name', 'founded', 'description'];
 
     // protected $timestamps = true;
 
     //Date Format
     // protected $dateFormat = 'h:m:s';
+
+    public function carModels()
+    {
+        return $this->hasMany(CarModel::class);
+    }
 }

@@ -17,12 +17,12 @@ class CarsController extends Controller
         //Select * from cars;
 
         // $cars = Car::all()->toArray();
-        $cars = Car::all()->toArray();
+        $cars = Car::all();
         //When the user clicked a specific car, it will show the specific car
         // $cars = Car::where('name', '=', 'AUDI')
         //     ->get();
 
-        // $cars = Car::where('name', '=', 'AUDI')
+        // $cars = Car::where('name', '=', 'AUDI') 
         //     ->firstOrFail();
 
         //Get data one by one
@@ -35,7 +35,7 @@ class CarsController extends Controller
         // dd($cars); 
         //Die Dump
 
-        var_dump($cars);
+        // var_dump($cars);
 
         // $cars = json_decode($cars);
 
@@ -89,7 +89,11 @@ class CarsController extends Controller
      */
     public function show($id)
     {
-        //
+        // dd($id);
+
+        $car = Car::find($id);
+
+        return view('cars.show')->with('car', $car);
     }
 
     /**
