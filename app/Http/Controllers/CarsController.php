@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 
+use App\Models\Headquarter;
+
 class CarsController extends Controller
 {
     /**
@@ -93,6 +95,9 @@ class CarsController extends Controller
 
         $car = Car::find($id);
 
+        $hq = Headquarter::find($id);
+
+        var_dump($hq);
         return view('cars.show')->with('car', $car);
     }
 

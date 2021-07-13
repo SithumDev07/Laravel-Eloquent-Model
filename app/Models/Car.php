@@ -28,4 +28,11 @@ class Car extends Model
     {
         return $this->hasMany(CarModel::class);
     }
+
+
+    //When it is One to One relationship, we don't need to write a method iniside Headquarter class
+    public function headquarter()
+    {
+        return $this->hasOne(Headquarter::class);
+    }
 }
