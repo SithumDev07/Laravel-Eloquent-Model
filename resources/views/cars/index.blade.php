@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@foreach ($cars as $car)
+    {{ $car->name }}
+@endforeach
+
 @section('content')
     <div class="m-auto w-4/5 py-24 ">
         <div class="text-center">
@@ -17,22 +21,28 @@
             @foreach ($cars as $car)
                 <div class="m-auto">
                     <div class="float-right">
-                        <a href="cars/{{ $car->id }}/edit" class="border-b-2 pb-2 border-dotted italic text-green-500">
+                        {{-- <a href="cars/{{ $car->id }}/edit" class="border-b-2 pb-2 border-dotted italic text-green-500"> --}}
+                        <a href="cars//edit" class="border-b-2 pb-2 border-dotted italic text-green-500">
                         Edit &rarr;</a>
 
-                        <form action="/cars/{{ $car->id }}" method="POST" class="pt-3">
+                        {{-- <form action="/cars/{{ $car->id }}" method="POST" class="pt-3"> --}}
+                        <form action="/cars/" method="POST" class="pt-3">
                             @csrf
                             @method('delete')
                             <button type="submit" class="border-b-2 pb-2 border-dotted italic text-red-500">Delete &rarr;</button>
                         </form>
                     </div>
                     <span class="uppercase text-blue-500 font-bold text-xs italic">
-                        Founded: {{ $car->founded }}
+                        {{-- Founded: {{ $car->founded }} --}}
                     </span>
 
-                    <h2  class="text-gray-700 text-5xl">{{ $car->name }}</h2>
+                    <h2  class="text-gray-700 text-5xl">
+                        {{-- {{ $car->name }} --}}
+                    </h2>
 
-                    <p class="text-lg text-gray-700 py-6">{{ $car->description }}</p>
+                    <p class="text-lg text-gray-700 py-6">
+                        {{-- {{ $car->description }} --}}
+                    </p>
                 
                     <hr class="mt-4 mb-8">
                 

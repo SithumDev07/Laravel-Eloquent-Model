@@ -16,7 +16,8 @@ class CarsController extends Controller
     {
         //Select * from cars;
 
-        $cars = Car::all();
+        // $cars = Car::all()->toArray();
+        $cars = Car::all()->toArray();
         //When the user clicked a specific car, it will show the specific car
         // $cars = Car::where('name', '=', 'AUDI')
         //     ->get();
@@ -33,6 +34,10 @@ class CarsController extends Controller
 
         // dd($cars); 
         //Die Dump
+
+        var_dump($cars);
+
+        // $cars = json_decode($cars);
 
         return view('cars.index', [
             'cars' => $cars
