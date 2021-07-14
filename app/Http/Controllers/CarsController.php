@@ -7,6 +7,7 @@ use App\Models\Car;
 
 use App\Models\Headquarter;
 use App\Models\Product;
+use App\Rules\Uppercase;
 
 class CarsController extends Controller
 {
@@ -110,6 +111,24 @@ class CarsController extends Controller
 
         // dd($test);
         //Create a new Car
+
+        //Validate Method
+        $request->validate([
+            'name' => new Uppercase,
+            'founded' => 'required|date|integer|min:0|max:2021',
+            'description' => 'required|max:255',
+        ]);
+
+        //Or like 2D array
+        // $request->validate([
+        //     'name' => ['required'], ['unique:cars'],
+        //     'founded' => 'required|date|integer|min:0|max:2021',
+        //     'description' => 'required|max:255',
+        // ]);
+
+        //If it's valid, it will procees
+        //If it's not valid, throw a ValidationException
+
         $car = Car::create([
             'name' => $request->input('name'),
             'founded' => $request->input('founded'),
