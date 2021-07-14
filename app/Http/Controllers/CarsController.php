@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 
 use App\Models\Headquarter;
+use App\Models\Product;
 
 class CarsController extends Controller
 {
@@ -101,6 +102,12 @@ class CarsController extends Controller
         // var_dump($car->productionDate);
 
         // var_dump($hq);
+
+        // var_dump($car->products);
+
+        $products = Product::find($id);
+
+        // print_r($products);
         return view('cars.show')->with('car', $car);
     }
 

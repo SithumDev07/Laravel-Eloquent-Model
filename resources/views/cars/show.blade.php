@@ -5,7 +5,7 @@
         <div class="text-center">
             <h1 class="text-5xl uppercase bold">{{ $car->name }}</h1>
             <p class="text-lg text-gray-700 py-6">
-                {{ $car->headquarter->headquarters }}, {{ $car->headquarter->country }}
+                {{-- {{ $car->headquarter->headquarters }}, {{ $car->headquarter->country }} --}}
             </p>
         </div>
 
@@ -40,13 +40,13 @@
 
                     <table class="table-auto">
                         <tr class="bg-blue-100">
-                            <th class="w-1/4 border-4 border-gray-500 w-1/2">
+                            <th class="w-1/4 border-4 border-gray-500">
                                 Model
                             </th>
-                            <th class="w-1/4 border-4 border-gray-500 w-1/2">
+                            <th class="w-1/4 border-4 border-gray-500">
                                 Engines
                             </th>
-                            <th class="w-1/4 border-4 border-gray-500 w-1/2">
+                            <th class="w-1/4 border-4 border-gray-500">
                                 Date
                             </th>
                         </tr>
@@ -74,6 +74,14 @@
                         @endforelse
                     </table>
                 
+                    <p class="text-left">
+                        Product types:
+                            @forelse ($car->products as $product)
+                                {{ $product->name }}
+                            @empty
+                                <p>No car product types available</p>
+                            @endforelse
+                    </p>
                     <hr class="mt-4 mb-8">
                 
                 </div>
