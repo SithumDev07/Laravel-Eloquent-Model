@@ -51,6 +51,6 @@
             @endforeach
         </div>
 
-        {{ $cars->links() }}
+        {{ $cars->links() }} 
     </div>
 @endsection
