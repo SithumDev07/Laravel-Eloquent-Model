@@ -75,7 +75,7 @@ class CarsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateValidationRequest $request)
+    public function store(Request $request)
     {
         //Usual Way
         // $car = new Car();
@@ -113,7 +113,40 @@ class CarsController extends Controller
         // dd($test);
         //Create a new Car
 
-        $request->validated();
+        // $request->validated();
+        // dd($request->all());
+
+
+        //Methods we can use on $request
+        //guessExtension 
+        //getMimeType()
+        //store
+        //asStore
+        //storePublicly()
+        //move()
+        //getClientOriginalName()
+        //getClientMimeType()
+        //guessClientExtension()
+        //getSize()
+        //getError()
+        //isValid()
+
+        // $test = $request->file('image')->guessExtension();
+        // $test = $request->file('image')->getMimeType();
+        // $test = $request->file('image')->guessClientExtension();
+
+        // dd($test);
+
+        $request->validate([
+            'name' => 'required|unique:cars',
+            'founded' => 'required|integer|min:0,max:2021',
+            'description' => 'required',
+            'image' => 'required|mimes:png,jpg,jpeg|max:5048',
+        ]);
+
+        $newImageName = time() . '-' . $request->name . '.' . $request->image->extension();
+
+        $request->image->move(public_path('images'), $newImageName);
 
         //Validate Method
         // $request->validate([
@@ -135,7 +168,8 @@ class CarsController extends Controller
         $car = Car::create([
             'name' => $request->input('name'),
             'founded' => $request->input('founded'),
-            'description' => $request->input('description')
+            'description' => $request->input('description'),
+            'image_path' => $newImageName,
         ]);
 
         //When we use Car::make instead of Car::create, we have to call save method
